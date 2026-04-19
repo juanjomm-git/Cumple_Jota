@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examen</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #1e293b, #3b0764);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.shell {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.panel {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(0,0,0,0.4);
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(20px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+.exam-topbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.status-pill {
+  background: linear-gradient(135deg, #22c55e, #4ade80);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #022c22;
+}
+
+h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.lead {
+  opacity: 0.85;
+  margin-bottom: 25px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* PREGUNTAS */
+.question {
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+}
+
+.question h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* OPCIONES */
+label {
+  display: block;
+  margin-bottom: 6px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+label:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+input[type="radio"] {
+  margin-right: 6px;
+}
+
+/* BOTÓN */
+button {
+  margin-top: 20px;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #9333ea, #ec4899);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(236,72,153,0.6);
+}
+</style>
+</head>
+
+<body>
+  <main class="shell">
+    <section class="panel">
+        
+      <h2 id="bienvenida">👋 Bienvenido...</h2>
+
+      <p class="lead">
+        🧠 Responde con sabiduría...  
+        ⚠️ Juanjito está observando cada decisión.
+      </p>
+
+      <form id="examenForm"></form>
+
+      <button type="submit" form="examenForm">📨 Enviar respuestas</button>
+
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

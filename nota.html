@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resultado</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  height: 100vh;
+  background: linear-gradient(135deg, #020617, #1e293b, #4c1d95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.shell {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.panel {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(0,0,0,0.4);
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(20px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #a78bfa;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.result-box {
+  font-size: 18px;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+/* MENSAJE VISUAL */
+.badge {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* COLORES DINÁMICOS */
+.good { background: #22c55e; color:#022c22; }
+.mid { background: #facc15; color:#422006; }
+.bad { background: #ef4444; color:#450a0a; }
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #9333ea, #ec4899);
+  color: white;
+  transition: 0.3s;
+}
+
+a:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(236,72,153,0.6);
+}
+</style>
+</head>
+
+<body>
+  <main class="shell">
+    <section class="panel">
+
+      <h1>📊 Resultado</h1>
+
+      <div class="result-box" id="resultado"></div>
+      <br>
+
+      <a href="index.html">🔁 Intentar otra vez</a>
+
+    </section>
+  </main>
+
+<script>
+const nombre = localStorage.getItem("nombre") || "Invitado";
+const nota = Number(localStorage.getItem("nota") || 0);
+const total = Number(localStorage.getItem("total") || 0);
+
+let mensaje = "";
+let clase = "";
+let emoji = "";
+
+if (nota === total && total > 0) {
+  mensaje = "Eres un fan nivel DIOS";
+  clase = "good";
+  emoji = "👑🔥";
+}
+else if (nota > total / 2) {
+  mensaje = "Me conoces bastante bien";
+  clase = "mid";
+  emoji = "😏👌";
+}
+else {
+  mensaje = "No me conoces tanto como creías";
+  clase = "bad";
+  emoji = "💀📉";
+}
+
+document.getElementById("resultado").innerHTML =
+  `👤 <strong>${nombre}</strong><br><br>
+   🧮 ${nota} / ${total}<br><br>
+   ${emoji} ${mensaje}`;
+
+const badge = document.getElementById("badge");
+badge.innerHTML = `<span class="badge ${clase}">${mensaje}</span>`;
+</script>
+
+</body>
+</html>
